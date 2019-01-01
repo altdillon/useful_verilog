@@ -24,19 +24,21 @@ module synch_ram_tb();
         clk = 1'b0; #1;
       end
       // try writing to a random address
-      // ren = 1'b0;
-      // wen = 1'b1;
-      // addr = 16'h01EE;
-      // dataI = 8'hA1;
-      // clk = 1'b0; #1;
-      // clk = 1'b1; #1;
-      // // now try reading from same address
-      // ren = 1'b1;
-      // wen = 1'b0;
-      // clk = 1'b0; #1;
-      // clk = 1'b1; #1;
-      // $display("dataout: %x",dataOut);
-
+       ren = 1'b0;
+       wen = 1'b1;
+       addr = 16'h0FAA;
+       dataI = 8'hEA;
+       clk = 1'b1; #1; clk = 1'b0; #1;
+       // read from that same address 
+       ren = 1'b1;
+       wen = 1'b0;
+       // run the clock 
+       clk = 1'b1; #1;
+       clk = 1'b0; #1;
+       clk = 1'b1; #1;
+       $display("reading from some place in ram");
+       $display("addr: %x, data: %x ",addr,dataOut);
+       clk = 1'b0; #1;
 
       $finish;
   end

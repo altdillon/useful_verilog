@@ -19,7 +19,10 @@ module synch_ram(input clk,input chipsel,input writeEn,input readEn,input [7:0] 
     begin
       if(op_write)
         begin
+          //$display("write operation!");
+          //$display(addrIn);
           mem[addrIn] <= busIn;
+          //$display(mem[addrIn]);
         end
     end
 
